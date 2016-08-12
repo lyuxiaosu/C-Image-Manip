@@ -1,5 +1,5 @@
 #include "pixutils.h"
-#include "bmp.h"
+//#include "bmp.h"
 
 int main(int argc, char *argv[]){
   char *inputfile=0,*outputfile=0;
