@@ -40,7 +40,7 @@ Rename this file to lodepng.cpp to use it for C++, or to lodepng.c to use it for
 #endif /*_MSC_VER */
 
 const char* LODEPNG_VERSION_STRING = "20160501";
-
+#define MAX_IMG_SZ (1024*1024) //1MB
 /*
 This source file is built up in the following large parts. The code sections
 with the "LODEPNG_COMPILE_" #defines divide this up further in an intermixed way.
@@ -386,14 +386,21 @@ static unsigned lodepng_buffer_file(unsigned char* out, size_t size, const char*
 
 unsigned lodepng_load_file(unsigned char** out, size_t* outsize, const char* filename)
 {
-  long size = lodepng_filesize(filename);
+//  long size = lodepng_filesize(filename);
+  long size = MAX_IMG_SZ;
   if (size < 0) return 78;
+ 
   *outsize = (size_t)size;
 
   *out = (unsigned char*)lodepng_malloc((size_t)size);
   if(!(*out) && size > 0) return 83; /*the above malloc failed*/
 
-  return lodepng_buffer_file(*out, (size_t)size, filename);
+  //return lodepng_buffer_file(*out, (size_t)size, filename);
+  size_t imgSz = 0;
+  imgSz = read(0, *out, size);
+  if (imgSz <= 0) return 78;
+
+  return 0;
 }
 
 /*write given buffer to the file, overwriting the file, it doesn't append to it.*/

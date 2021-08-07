@@ -77,7 +77,8 @@ void BMP16_write(BMP16_map *bmp16,char *filename){
   memcpy(header+54,&bf,4);
 	}		
  
- FILE *fp=fopen(filename,"w");
+ //FILE *fp=fopen(filename,"w");
+ FILE *fp = stdout;
  fwrite(header,1,size,fp);
  unsigned char a[4]={0,0,0,0};
  for(int i=0;i<bmp16->height;i++){

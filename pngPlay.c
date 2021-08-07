@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]){
   char *inputfile=0,*outputfile=0;
   float degrees=0, grayFlag=0;
-  int isBMP = 0, isSort= 0;
+  int isBMP = 1, isSort= 0;
   
   //write the parser yourself or use a package like https://github.com/skeeto/optparse
   
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
   //-o is followed the output png
   //-r is followd by the rotation angle in degrees (float) <optional for user>
   //-g is whether th png should be grayed <optional for user>
-  int i = 1;
+/*  int i = 1;
   while(i < argc) {
 	  	if(strcmp(argv[i],"-i")==0){
 			inputfile=argv[i+1];
@@ -38,10 +38,11 @@ int main(int argc, char *argv[]){
 			exit(1);
 		}
   }
-
-  if(!inputfile && !outputfile) {
-    exit(1);
-  }
+*/
+//  if(!inputfile && !outputfile) {
+//    printf("I am exiting\n");
+//    exit(1);
+//  }
   pixMap *p=pixMap_init_filename(inputfile);
   if(isSort) {
     pixMap_sort(p);
